@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Include stylesheet -->
+    <!-- Include Quill stylesheet -->
     <link
       href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css"
       rel="stylesheet"
@@ -10,8 +10,22 @@
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <!-- Initialize Quill editor -->
     <script src="editor.js"></script>
+
+    <!-- Include stylesheet -->
+    <link href="editor.css" rel="stylesheet" />
+    <link href="recipe.css" rel="stylesheet" />
   </head>
   <body>
-    <div id="editor"></div>
+    <div class="container">
+      <h2 style="margin-top: 0px; margin-bottom: 10px">Recipe</h2>
+      <input id="recipe-title" placeholder="Title" type="text" />
+      <h2 style="margin-bottom: 10px">Ingredients</h2>
+      <div id="ingredients-list">
+        <input class="ingredient" placeholder="Ingredient 1" type="text" />
+        <input class="ingredient" placeholder="Ingredient 2" type="text" />
+        <input class="ingredient" placeholder="Ingredient 3" type="text" />
+      </div>
+      <div id="editor"></div>
+    </div>
   </body>
 </html>
