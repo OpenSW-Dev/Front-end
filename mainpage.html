@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음식 레시피 공유 사이트</title>
+    <link rel="stylesheet" href="mainpage.css">
+</head>
+<body>
+    <div class="header-container">
+        <div class="header">
+            <div class="logo">
+                <img src="logoimage.png" alt="로고 이미지">
+            </div>
+            메인 페이지
+        </div>
+        <button class="login-button" onclick="goToPage('login')">로그인</button>
+    </div>
+    
+    <div class="main-container">
+        <div class="left-column">
+            <div class="section wall-section">
+                <div class="section-header">
+                    <span>담벼락</span>
+                    <button class="more-button" onclick="goToPage('wall')">더보기</button>
+                </div>
+                <div class="grid-container">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <div class="section editor-section">
+                <div class="section-header">
+                    <span>내 계정</span>
+                </div>
+                <div class="editor-content">
+                    <div class="circle-image"></div>
+                    <div class="content-text">
+                        <div class="content-title">내 닉네임</div>
+                        <div class="content-description">팔로우 20 | 팔로잉 2</div>
+                    </div>
+                    <button class="more-button" onclick="goToPage('editor')">글쓰기</button>
+                </div>
+            </div>
+
+            <div class="section follow-section">
+                <div class="section-header">
+                    <span>팔로우 목록</span>
+                    <button class="more-button" onclick="goToPage('follow')">더보기</button>
+                </div>
+                <div class="follow-content">
+                    <div class="circle-image"></div>
+                    <div class="content-text">
+                        <div class="content-title">팔로잉 1 닉네임</div>
+                        <div class="content-description">새 글 2</div>
+                    </div>
+                </div>
+                <div class="follow-content">
+                    <div class="circle-image"></div>
+                    <div class="content-text">
+                        <div class="content-title">팔로잉 2 닉네임</div>
+                        <div class="content-description">새 글 3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="mainpage.js"></script>
+</body>
+</html>
