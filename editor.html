@@ -13,7 +13,7 @@
 
     <!-- Include stylesheet -->
     <link href="editor.css" rel="stylesheet" />
-    <link href="navbar.css" rel="stylesheet">
+    <link href="navbar.css" rel="stylesheet" />
     <link href="recipe.css" rel="stylesheet" />
   </head>
   <body>
@@ -21,7 +21,9 @@
     <script>
       fetch("navbar.html")
         .then((response) => response.text())
-        .then((data) => (document.getElementById("navbar-header").innerHTML = data));
+        .then(
+          (data) => (document.getElementById("navbar-header").innerHTML = data)
+        );
     </script>
     <div class="editor-container">
       <h2 style="margin-top: 15px; margin-bottom: 10px">Recipe</h2>
@@ -33,6 +35,9 @@
         <input class="ingredient" placeholder="Ingredient 3" type="text" />
       </div>
       <div id="editor"></div>
+      <button class="editor-btn">
+        Submit
+      </button>
     </div>
   </body>
 </html>
