@@ -9,7 +9,7 @@
     <!-- Include the Quill library -->
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <!-- Initialize Quill editor -->
-    <script src="editor.js"></script>
+    <script src="editor.js" defer></script>
 
     <!-- Include stylesheet -->
     <link href="editor.css" rel="stylesheet" />
@@ -26,18 +26,34 @@
         );
     </script>
     <div class="editor-container">
-      <h2 style="margin-top: 15px; margin-bottom: 10px">Recipe</h2>
+      <h2 style="margin-top: 10px; margin-bottom: 10px">Recipe</h2>
       <input id="recipe-title" placeholder="Title" type="text" />
       <h2 style="margin-bottom: 10px">Ingredients</h2>
       <div id="ingredients-list">
-        <input class="ingredient" placeholder="Ingredient 1" type="text" />
-        <input class="ingredient" placeholder="Ingredient 2" type="text" />
-        <input class="ingredient" placeholder="Ingredient 3" type="text" />
+        <div class="ingredient-container">
+          <input class="ingredient" placeholder="Ingredient" type="text" />
+          <button class="btn remove-btn" onclick="removeIngredient(this)">
+            -
+          </button>
+          <input class="ingredient-amount" placeholder="Amount" type="text" />
+        </div>
+        <div class="ingredient-container">
+          <input class="ingredient" placeholder="Ingredient" type="text" />
+          <button class="btn remove-btn" onclick="removeIngredient(this)">
+            -
+          </button>
+          <input class="ingredient-amount" placeholder="Amount" type="text" />
+        </div>
       </div>
-      <div id="editor"></div>
-      <button class="editor-btn">
-        Submit
+      <button
+        class="btn editor-btn"
+        id="ingredient-btn"
+        style="margin: 0 0 10px 0"
+      >
+        +
       </button>
+      <div id="editor"></div>
+      <button class="btn editor-btn">Submit</button>
     </div>
   </body>
 </html>
