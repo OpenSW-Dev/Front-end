@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,19 @@
     <title>음식 레시피 공유 사이트</title>
     <link rel="stylesheet" href="mainpage.css">
 </head>
+
+
 <body>
+    <header id="navbar-header"></header>
+    <script>
+        fetch("navbar.html")
+            .then((response) => response.text())
+            .then(
+                (data) => (document.getElementById("navbar-header").innerHTML = data)
+            );
+    </script>
+
+
     <div class="header-container">
         <div class="header">
             <div class="logo">
@@ -24,7 +37,7 @@
         <!--<button class="login-button" onclick="goToPage('login')">로그인</button>-->
         <button id="headerLoginBtn" class="login-button" onclick="toggleLogin()">로그인</button>
     </div>
-    
+
     <!--담벼락-->
     <div class="main-container">
         <div class="left-column">
@@ -68,7 +81,7 @@
                     <button class="more-button" onclick="goToPage('editor')">글쓰기</button>
                 </div>
             </div>
-            
+
             <!--팔로우-->
             <div id="followSection" class="section follow-section hidden">
                 <div class="section-header">
@@ -95,4 +108,5 @@
 
     <script src="mainpage.js"></script>
 </body>
+
 </html>
