@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="favicon" type="image/x-icon" href="logoimage/favicon.ico">
+    <!-- 다양한 기기에서의 지원을 위한 여러 크기의 favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="logoimage/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="logoimage/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="logoimage/favicon-16x16.png">
+    <title>음식 레시피 공유 사이트</title>
+    <link rel="stylesheet" href="mainpage.css">
+</head>
+
+
+<body>
+    <header id="navbar-header"></header>
+    <script>
+        fetch("navbar.html")
+            .then((response) => response.text())
+            .then(
+                (data) => (document.getElementById("navbar-header").innerHTML = data)
+            );
+    </script>
+
+
+    <div class="header-container">
+        <div class="header">
+            <div class="logo">
+                <img src="logoimage/logoimage.png" alt="로고 이미지">
+            </div>
+            메인 페이지
+        </div>
+        <!--로그인 버튼-->
+        <!--실제 페이지 넘어가는 코드, 아래 코드는 지우고 사용-->
+        <!--<button class="login-button" onclick="goToPage('login')">로그인</button>-->
+        <button id="headerLoginBtn" class="login-button" onclick="toggleLogin()">로그인</button>
+    </div>
+
+    <!--담벼락-->
+    <div class="main-container">
+        <div class="left-column">
+            <div class="section wall-section">
+                <div class="section-header">
+                    <span>HOT RECEIPE</span>
+                    <button class="more-button" onclick="goToPage('wall')">더보기</button>
+                </div>
+                <div class="grid-container">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--에디터-->
+        <div class="right-column">
+            <div id="editorLoginSection" class="section editor-section">
+                <div class="section-header">
+                    <span>에디터</span>
+                </div>
+                <div class="editor-login-content">
+                    <button class="login-button-large" onclick="toggleLogin()">
+                        로그인하고 추천 레시피 보기
+                    </button>
+                </div>
+            </div>
+
+            <div id="editorContent" class="section editor-section hidden">
+                <div class="section-header">
+                    <span>내 계정</span>
+                </div>
+                <div class="editor-content">
+                    <div class="circle-image"></div>
+                    <div class="content-text">
+                        <div class="content-title">내 닉네임</div>
+                        <div class="content-description">팔로우 20 | 팔로잉 2</div>
+                    </div>
+                    <button class="more-button" onclick="goToPage('editor')">글쓰기</button>
+                </div>
+            </div>
+
+            <!--팔로우-->
+            <div id="followSection" class="section follow-section hidden">
+                <div class="section-header">
+                    <span>팔로우 목록</span>
+                    <button class="more-button" onclick="goToPage('follow')">더보기</button>
+                </div>
+                <div class="follow-content">
+                    <div class="circle-image"></div>
+                    <div class="content-text">
+                        <div class="content-title">팔로잉 1 닉네임</div>
+                        <div class="content-description">새 글 2</div>
+                    </div>
+                </div>
+                <div class="follow-content">
+                    <div class="circle-image"></div>
+                    <div class="content-text">
+                        <div class="content-title">팔로잉 2 닉네임</div>
+                        <div class="content-description">새 글 3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="mainpage.js"></script>
+</body>
+
+</html>
