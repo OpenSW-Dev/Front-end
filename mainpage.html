@@ -19,9 +19,13 @@
             </div>
             메인 페이지
         </div>
-        <button class="login-button" onclick="goToPage('login')">로그인</button>
+        <!--로그인 버튼-->
+        <!--실제 페이지 넘어가는 코드, 아래 코드는 지우고 사용-->
+        <!--<button class="login-button" onclick="goToPage('login')">로그인</button>-->
+        <button id="headerLoginBtn" class="login-button" onclick="toggleLogin()">로그인</button>
     </div>
     
+    <!--담벼락-->
     <div class="main-container">
         <div class="left-column">
             <div class="section wall-section">
@@ -38,8 +42,20 @@
             </div>
         </div>
 
+        <!--에디터-->
         <div class="right-column">
-            <div class="section editor-section">
+            <div id="editorLoginSection" class="section editor-section">
+                <div class="section-header">
+                    <span>에디터</span>
+                </div>
+                <div class="editor-login-content">
+                    <button class="login-button-large" onclick="toggleLogin()">
+                        로그인하고 추천 레시피 보기
+                    </button>
+                </div>
+            </div>
+
+            <div id="editorContent" class="section editor-section hidden">
                 <div class="section-header">
                     <span>내 계정</span>
                 </div>
@@ -52,8 +68,9 @@
                     <button class="more-button" onclick="goToPage('editor')">글쓰기</button>
                 </div>
             </div>
-
-            <div class="section follow-section">
+            
+            <!--팔로우-->
+            <div id="followSection" class="section follow-section hidden">
                 <div class="section-header">
                     <span>팔로우 목록</span>
                     <button class="more-button" onclick="goToPage('follow')">더보기</button>

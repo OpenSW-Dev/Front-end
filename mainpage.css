@@ -180,3 +180,32 @@ body {
     font-size: 12px;
     color: #666;
 }
+
+.hidden {
+    display: none !important;
+}
+
+.editor-login-content {
+    flex: 1;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-button-large {
+    padding: 15px 30px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.login-button-large:hover {
+    background-color: #0056b3;
+}

@@ -1,8 +1,39 @@
+let isLoggedIn = false;
+
+function toggleLogin() {
+    isLoggedIn = !isLoggedIn;
+    updateUI();
+}
+
+function updateUI() {
+    const headerLoginBtn = document.getElementById('headerLoginBtn');
+    const editorLoginSection = document.getElementById('editorLoginSection');
+    const editorContent = document.getElementById('editorContent');
+    const followSection = document.getElementById('followSection');
+
+    if (isLoggedIn) {
+        headerLoginBtn.textContent = '로그아웃';
+        editorLoginSection.classList.add('hidden');
+        editorContent.classList.remove('hidden');
+        followSection.classList.remove('hidden');
+    } else {
+        headerLoginBtn.textContent = '로그인';
+        editorLoginSection.classList.remove('hidden');
+        editorContent.classList.add('hidden');
+        followSection.classList.add('hidden');
+    }
+}
+
 function goToPage(page) {
     switch(page) {
         case 'login':
-            window.location.href = '/login.html';
+            if (confirm('로그인 페이지로 이동하시겠습니까?')) {
+                window.location.href = '/login.html';
+            }
             break;
+            //case 'login':
+            //window.location.href = '/login.html';
+            //break;
         case 'wall':
             window.location.href = '/wall.html';
             break;
@@ -17,21 +48,5 @@ function goToPage(page) {
     }
 }
 
-// 페이지 로드 시 이벤트 리스너 등록
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.more-button, .login-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-            const pageName = {
-                'login': '로그인',
-                'wall': '담벼락',
-                'editor': '에디터',
-                'follow': '팔로우'
-            }[e.target.onclick.toString().match(/goToPage\('(.+)'\)/)[1]];
-            
-            if (!confirm(`${pageName} 페이지로 이동하시겠습니까?`)) {
-                e.preventDefault();
-                return false;
-            }
-        });
-    });
-});
+// 초기 UI 설정
+updateUI();
