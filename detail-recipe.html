@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>게시글 상세 페이지</title>
     <link rel="stylesheet" href="detail-recipe.css" />
+    <link href="navbar.css" rel="stylesheet" />
   </head>
   <body>
-    <header>
-      <h2>게시글 상세 페이지</h2>
-    </header>
+    <header id="navbar-header"></header>
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then(
+          (data) => (document.getElementById("navbar-header").innerHTML = data)
+        );
+    </script>
 
     <div class="container">
       <!-- 게시글 내용 -->
@@ -85,10 +91,6 @@
         <button>댓글 작성</button>
       </div>
     </div>
-
-    <footer>
-      <p>&copy; 2024 Example. <a href="index.html">홈으로 돌아가기</a></p>
-    </footer>
 
     <!-- JavaScript 코드 추가 -->
     <script src="detail-recipe.js"></script>
