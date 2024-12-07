@@ -7,14 +7,29 @@
     <link rel="stylesheet" href="detail-recipe.css" />
   </head>
   <body>
-<header id="navbar-header"></header>
-<script>
+    <!-- 상단 바 -->
+    <div class="custom-header">
+      <div class="account-info">
+        <span class="username">사용자1</span>
+        <span class="details">팔로워 123명</span>
+        <span class="details">가입일 2023-10-15</span>
+      </div>
+      <div class="header-buttons">
+        <button class="follow-list-btn">팔로우한 계정</button>
+        <button class="logout-btn">로그아웃</button>
+      </div>
+    </div>
+
+    <!-- 네비게이션 바 -->
+    <header id="navbar-header"></header>
+    <script>
       fetch("navbar.html")
         .then((response) => response.text())
         .then(
           (data) => (document.getElementById("navbar-header").innerHTML = data)
         );
-</script>
+    </script>
+
     <div class="container">
       <!-- 게시글 내용 -->
       <div class="post-title">게시글 제목</div>
@@ -26,19 +41,18 @@
         </p>
       </div>
 
-      <!-- 액션 바 -->
+      <!-- 좋아요, 댓글, 즐겨찾기 부분 정렬 -->
       <div class="action-bar">
         <div class="stats">
-          <div class="heart-count">
-            <span class="heart-icon">❤️</span>
-            <span>94</span>
+          <div class="stat-item">
+            <span class="heart-icon">❤️</span> <span>94</span>
           </div>
-          <div class="bookmark-count">
-            <span class="bookmark-icon">⭐</span>
-            <span>10</span>
+          <div class="stat-item">
+            <span class="comment-icon">💬</span> <span>4</span>
           </div>
-          <span>💬 4</span>
-          <!-- 댓글 개수 표시 -->
+          <div class="stat-item">
+            <span class="bookmark-icon">⭐</span> <span>10</span>
+          </div>
         </div>
       </div>
 
@@ -64,23 +78,7 @@
           <span class="heart-icon">❤️</span>
         </div>
 
-        <div class="comment">
-          <div class="comment-content">
-            <strong>hyun_ra</strong>
-            <p>댓글내용</p>
-            <div class="comment-meta">작성일: 2024-11-12</div>
-          </div>
-          <span class="heart-icon">❤️</span>
-        </div>
-
-        <div class="comment">
-          <div class="comment-content">
-            <strong>kyhday40</strong>
-            <p>댓글내용</p>
-            <div class="comment-meta">작성일: 2024-11-13</div>
-          </div>
-          <span class="heart-icon">❤️</span>
-        </div>
+        <!-- 추가 댓글들... -->
       </div>
 
       <!-- 새로운 댓글 작성 -->
@@ -94,7 +92,6 @@
       <p>&copy; 2024 Example. <a href="index.html">홈으로 돌아가기</a></p>
     </footer>
 
-    <!-- JavaScript 코드 추가 -->
     <script src="detail-recipe.js"></script>
   </body>
 </html>
