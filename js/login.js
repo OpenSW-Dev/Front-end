@@ -33,7 +33,7 @@ document
       if (data) {
         localStorage.setItem("authToken", data);
         alert("로그인 성공!");
-        window.location.href = "recipes.html";
+        window.location.href = "index.html";
       } else {
         errorMessage.textContent = "Unexpected response from the server.";
       }
