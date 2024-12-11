@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="mainpage.css">
 </head>
 
-
 <body>
     <header id="navbar-header"></header>
     <script>
@@ -23,7 +22,6 @@
                 (data) => (document.getElementById("navbar-header").innerHTML = data)
             );
     </script>
-
 
     <div class="header-container">
         <div class="header">
@@ -47,10 +45,30 @@
                     <button class="more-button" onclick="goToPage('wall')">더보기</button>
                 </div>
                 <div class="grid-container">
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
-                    <div class="grid-item"></div>
+                    <div class="grid-item" onclick="goToPage('image1')">
+                        <img src="sampleimage/bibimbab.jpeg" alt="비빔밥">
+                        <div class="grid-item-overlay">
+                            <span>비빔밥 맛잇게 만드는 재료</span>
+                        </div>
+                    </div>
+                    <div class="grid-item" onclick="goToPage('image2')">
+                        <img src="sampleimage/jjajangmeon.jpg" alt="짜장면">
+                        <div class="grid-item-overlay">
+                            <span>정통 짜장면 레시피</span>
+                        </div>
+                    </div>
+                    <div class="grid-item" onclick="goToPage('image3')">
+                        <img src="sampleimage/pizza.jpg" alt="피자">
+                        <div class="grid-item-overlay">
+                            <span>시카고 피자</span>
+                        </div>
+                    </div>
+                    <div class="grid-item" onclick="goToPage('image4')">
+                        <img src="sampleimage/ssalguksu.jpeg" alt="쌀국수">
+                        <div class="grid-item-overlay">
+                            <span>베트남 쌀국수</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,7 +123,6 @@
             </div>
         </div>
     </div>
-
     <script src="mainpage.js"></script>
 </body>
 
