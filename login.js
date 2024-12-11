@@ -1,13 +1,12 @@
 document
   .getElementById("login-form")
   .addEventListener("submit", async function (event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
     const email = event.target.email.value;
     const password = event.target.password.value;
     const errorMessage = document.getElementById("error-message");
 
-    // Clear previous error messages
     errorMessage.textContent = "";
 
     try {
@@ -30,8 +29,6 @@ document
       }
 
       const data = await response.json();
-
-      // const token = data.token;
 
       if (data) {
         localStorage.setItem("authToken", data);

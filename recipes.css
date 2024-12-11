@@ -20,7 +20,9 @@
 }
 
 .wall-column {
+  display: flex;
   flex: 1;
+  margin: auto;
 }
 
 .section {
