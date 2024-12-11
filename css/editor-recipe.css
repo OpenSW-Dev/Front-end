@@ -16,12 +16,15 @@
 }
 
 .editor-container {
-  background: #f9f5e1;
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   height: max-content;
   justify-content: center;
   margin: 0 auto;
+  margin-top: 10px;
   padding: 20px;
   width: 55%;
 }
