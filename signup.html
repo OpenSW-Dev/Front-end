@@ -33,9 +33,10 @@
         );
     </script>
     <div class="signup-container">
-      <form action="#" method="POST">
-        <h1 style="font-weight: bold;">오늘도 즐거운 한 끼!</h2>
-        <input type="email" name="username" placeholder="이메일" required />
+      <form action="#" method="POST" id="signup-form">
+        <h1 style="font-weight: bold">오늘도 즐거운 한 끼!</h1>
+        <div class="error" id="error-message"></div>
+        <input type="email" name="email" placeholder="이메일" required />
         <input type="text" name="nickname" placeholder="닉네임" required />
         <input
           type="password"
@@ -45,12 +46,13 @@
         />
         <input
           type="password"
-          name="password check"
+          name="passwordCheck"
           placeholder="비밀번호 확인"
           required
         />
         <button href="signup.html">회원가입</button>
       </form>
     </div>
+    <script src="signup.js"></script>
   </body>
 </html>
