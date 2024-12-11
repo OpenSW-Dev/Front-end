@@ -33,9 +33,10 @@
         );
     </script>
     <div class="login-container">
-      <form action="#" method="POST">
+      <form id="login-form">
         <h1 style="font-weight: bold;">오늘도 즐거운 한 끼!</h2>
-        <input type="email" name="username" placeholder="이메일" required />
+          <div class="error" id="error-message"></div>
+        <input type="email" name="email" placeholder="이메일" required />
         <input
           type="password"
           name="password"
@@ -48,5 +49,6 @@
         </div>
       </form>
     </div>
+    <script src="login.js"></script>
   </body>
 </html>
