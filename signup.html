@@ -21,7 +21,7 @@
     />
     <title>음식 레시피 공유 사이트</title>
     <link rel="stylesheet" href="navbar.css" />
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="signup.css" />
   </head>
   <body>
     <header id="navbar-header"></header>
@@ -32,20 +32,24 @@
           (data) => (document.getElementById("navbar-header").innerHTML = data)
         );
     </script>
-    <div class="login-container">
+    <div class="signup-container">
       <form action="#" method="POST">
         <h1 style="font-weight: bold;">오늘도 즐거운 한 끼!</h2>
         <input type="email" name="username" placeholder="이메일" required />
+        <input type="text" name="nickname" placeholder="닉네임" required />
         <input
           type="password"
           name="password"
           placeholder="비밀번호"
           required
         />
-        <div style="display: flex; gap: 10px; width: 260%">
-          <button type="submit">로그인</button>
-          <a class="signup" href="signup.html">회원가입</a>
-        </div>
+        <input
+          type="password"
+          name="password check"
+          placeholder="비밀번호 확인"
+          required
+        />
+        <button href="signup.html">회원가입</button>
       </form>
     </div>
   </body>
