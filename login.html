@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- 다양한 기기에서의 지원을 위한 여러 크기의 favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="logoimage/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="logoimage/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="logoimage/favicon-16x16.png"
+    />
+    <title>음식 레시피 공유 사이트</title>
+    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" , href="login.css" />
+  </head>
+  <body>
+    <header id="navbar-header"></header>
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then(
+          (data) => (document.getElementById("navbar-header").innerHTML = data)
+        );
+    </script>
+    <div class="login-container">
+      <form action="#" method="POST">
+        <h1 style="font-weight: bold;">오늘도 즐거운 한 끼!</h2>
+        <input type="email" name="username" placeholder="이메일" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="비밀번호"
+          required
+        />
+        <div style="display: flex; gap: 10px; width: 260%">
+          <button type="submit">로그인</button>
+          <button href="signup.html">회원가입</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
