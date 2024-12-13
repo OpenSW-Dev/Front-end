@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".username").textContent = "";
         document.querySelector(".details").textContent = "";
 
-        // Hide the follow-list-btn if logged out
         followListBtn.style.display = "none";
 
         logoutButton.textContent = "로그인";

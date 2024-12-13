@@ -67,12 +67,12 @@ input[type="text"] {
 .heart-icon {
   width: 24px;
   height: 24px;
-  fill: #e0e0e0; /* 기본 색상 */
+  fill: #e0e0e0;
   transition: fill 0.3s ease;
 }
 
 .like-button.active .heart-icon {
-  fill: #ff0000; /* 클릭 시 색상 */
+  fill: #ff0000;
 }
 
 .like-count {
