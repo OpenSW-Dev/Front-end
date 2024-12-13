@@ -25,13 +25,7 @@
   </head>
   <body>
     <header id="navbar-header"></header>
-    <script>
-      fetch("navbar.html")
-        .then((response) => response.text())
-        .then(
-          (data) => (document.getElementById("navbar-header").innerHTML = data)
-        );
-    </script>
+    <script src="../js/navbar.js"></script>
     <div class="signup-container">
       <form id="signup-form">
         <h1 style="font-weight: bold">오늘도 즐거운 한 끼!</h1>

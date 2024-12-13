@@ -28,15 +28,54 @@ document
         return;
       }
 
-      const resp = await response.json();
-      console.log(resp.data);
+      const loginResponse = await response.json();
 
-      if (resp) {
-        localStorage.setItem("authToken", resp.data);
+      if (loginResponse && loginResponse.data) {
+        localStorage.setItem("authToken", loginResponse.data);
+
+        const authToken = localStorage.getItem("authToken");
+
+        try {
+          const userResponse = await fetch(
+            "https://food-social.kro.kr/api/v1/members/me",
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          if (userResponse.ok) {
+            const userData = await userResponse.json();
+            console.log("User data:", userData);
+
+            if (userData && userData.data) {
+              localStorage.setItem("id", userData.data.id);
+              localStorage.setItem("email", userData.data.email);
+              localStorage.setItem("nickname", userData.data.nickname);
+              localStorage.setItem("following", userData.data.following);
+            } else {
+              console.error("Unexpected response format:", userData);
+            }
+          } else {
+            console.error(
+              "Failed to fetch user data:",
+              userResponse.status,
+              userResponse.statusText
+            );
+            alert("사용자 정보 불러오기에 실패했습니다.");
+          }
+        } catch (error) {
+          console.error("Error occurred while fetching user data:", error);
+          alert("사용자 정보 불러오기에 실패했습니다.");
+        }
+
         alert("로그인 성공!");
         window.location.href = "index.html";
       } else {
-        errorMessage.textContent = "Unexpected response from the server.";
+        errorMessage.textContent = "다시 시도해주세요.";
       }
     } catch (error) {
       console.error("Error during login:", error);

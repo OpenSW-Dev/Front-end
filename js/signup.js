@@ -41,10 +41,10 @@ document
           errorResponse.message || "회원가입 중 오류가 발생했습니다.";
         return;
       }
-
+      
       const successResponse = await response.json();
       alert("회원가입 성공!");
-      window.location.href = "/login.html";
+      window.location.href = "login.html";
     } catch (error) {
       console.error("Error occurred during signup:", error);
       errorMessage.textContent = "서버와의 통신 중 문제가 발생했습니다.";
