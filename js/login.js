@@ -28,10 +28,11 @@ document
         return;
       }
 
-      const data = await response.json();
+      const resp = await response.json();
+      console.log(resp.data);
 
-      if (data) {
-        localStorage.setItem("authToken", data);
+      if (resp) {
+        localStorage.setItem("authToken", resp.data);
         alert("로그인 성공!");
         window.location.href = "index.html";
       } else {
