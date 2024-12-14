@@ -1,87 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>팔로우 목록</title>
-        <link rel="stylesheet" href="followpage.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="favicon" type="image/x-icon" href="logoimage/favicon.ico">
+    <!-- 다양한 기기에서의 지원을 위한 여러 크기의 favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="logoimage/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="logoimage/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="logoimage/favicon-16x16.png">
+    <title>팔로잉 목록</title>
+    <link rel="stylesheet" href="followpage.css">
+</head>
 <body>
     <header class="header">
         <div class="header-left">
             <a href="mainpage.html" class="logo-container">
-                <img src="logoimage/logoimage.png" alt="로고" class="logo-image">
+                <img src="logoimage/favicon.ico" alt="로고" class="logo-image">
                 <span class="site-name">메인 페이지</span>
             </a>
         </div>
     </header>
-    <h1>팔로우 목록</h1>
-    <div id="tabs">
-        <div class="tab active" data-target="followers">나를 팔로우한 사람</div>
-        <div class="tab" data-target="following">내가 팔로우한 사람</div>
-    </div>
-    <div id="contents">
-        <div id="followers" class="content active">
-            <div class="user">
-                <img src="https://via.placeholder.com/60" alt="User Image">
-                <div class="user-info">
-                    <div class="user-name">사용자1</div>
-                    <div class="user-description">설명 문구입니다.</div>
-                </div>
-                <div class="user-activity">2시간 전 활동</div>
-                <button class="follow-button following">팔로잉</button>
-            </div>
-            <div class="user">
-                <img src="https://via.placeholder.com/60" alt="User Image">
-                <div class="user-info">
-                    <div class="user-name">사용자2</div>
-                    <div class="user-description">설명 문구입니다.</div>
-                </div>
-                <div class="user-activity">5시간 전 활동</div>
-                <button class="follow-button following">팔로잉</button>
-            </div>
-            <!-- 추가 사용자들 -->
-        </div>
-        <div id="following" class="content">
-            <div class="user">
-                <img src="https://via.placeholder.com/60" alt="User Image">
-                <div class="user-info">
-                    <div class="user-name">사용자A</div>
-                    <div class="user-description">설명 문구입니다.</div>
-                </div>
-                <div class="user-activity">1시간 전 활동</div>
-                <button class="follow-button following">팔로잉</button>
-            </div>
-            <div class="user">
-                <img src="https://via.placeholder.com/60" alt="User Image">
-                <div class="user-info">
-                    <div class="user-name">사용자B</div>
-                    <div class="user-description">설명 문구입니다.</div>
-                </div>
-                <div class="user-activity">3시간 전 활동</div>
-                <button class="follow-button following">팔로잉</button>
-            </div>
-            <!-- 추가 사용자들 -->
-        </div>
-    </div>
-    <script>
-        const tabs = document.querySelectorAll('.tab');
-        const contents = document.querySelectorAll('.content');
 
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // 모든 탭에서 'active' 클래스 제거
-                tabs.forEach(t => t.classList.remove('active'));
-                // 모든 콘텐츠 숨기기
-                contents.forEach(c => c.classList.remove('active'));
-                // 클릭된 탭에 'active' 클래스 추가
-                tab.classList.add('active');
-                // 해당하는 콘텐츠 표시
-                const target = tab.getAttribute('data-target');
-                document.getElementById(target).classList.add('active');
-            });
-        });
-    </script>
+    <div class="container">
+        <h1 class="title">팔로잉</h1>
+        <div id="user-list">
+            <!-- 사용자 목록이 여기에 동적으로 추가됩니다 -->
+        </div>
+    </div>
+
     <script src="followpage.js"></script>
 </body>
 </html>
