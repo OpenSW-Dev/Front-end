@@ -1,31 +1,3 @@
-// 댓글 추가 기능
-document
-  .querySelector(".new-comment button")
-  .addEventListener("click", function () {
-    const commentText = document.querySelector(".new-comment textarea").value;
-    if (commentText.trim() === "") {
-      alert("댓글을 입력해주세요!");
-      return;
-    }
-
-    const commentSection = document.querySelector(".comments-section");
-    const newComment = `
-      <div class="comment">
-        <div class="comment-content">
-          <strong>새로운 사용자</strong>
-          <p>${commentText}</p>
-          <div class="comment-meta">작성일: ${new Date()
-            .toISOString()
-            .slice(0, 10)}</div>
-        </div>
-        <span class="heart-icon">❤️</span>
-      </div>
-    `;
-    commentSection.insertAdjacentHTML("beforeend", newComment);
-    document.querySelector(".new-comment textarea").value = ""; // 댓글 입력창 초기화
-    updateCommentCount();
-  });
-
 // 하트, 별 카운트 증가/감소 기능
 document
   .querySelectorAll(".heart-count .heart-icon, .bookmark-count .bookmark-icon")
@@ -62,4 +34,147 @@ function updateCommentCount() {
   document.querySelector(
     ".action-bar .stats span:last-child"
   ).textContent = `💬 ${commentCount}`;
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+const articleId = urlParams.get("id");
+
+if (articleId) {
+  const authToken = localStorage.getItem("authToken");
+
+  const headers = {
+    "Content-Type": "application/json",
+  };
+
+  if (authToken) {
+    headers["Authorization"] = `Bearer ${authToken}`;
+  }
+
+  fetch(
+    `https://food-social.kro.kr/api/v1/article/detail?articleId=${articleId}`,
+    {
+      method: "GET",
+      headers: headers,
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const article = data.data;
+
+      document.querySelector(".post-title").textContent = article.title;
+
+      const postMeta = document.querySelector(".post-meta");
+      postMeta.textContent = `작성자: ${article.nickname} | 작성일: ${article.date}`;
+
+      const postContent = document.querySelector(".post-content");
+      postContent.innerHTML = article.content;
+
+      const stats = document.querySelector(".stats");
+      stats.innerHTML = `
+        <div class="heart-count">
+          <span class="heart-icon">❤️</span>
+          <span>${article.likeCnt}</span>
+        </div>
+        <div class="bookmark-count">
+          <span class="bookmark-icon">⭐</span>
+          <span>${article.bookmarks || 0}</span>
+        </div>
+        <span>💬 ${article.cmtCnt}</span>
+      `;
+
+      const commentsSection = document.querySelector(".comments-section");
+
+      commentsSection.innerHTML = "<h2>댓글</h2>";
+      refreshComments(headers);
+    })
+    .catch((error) => {
+      console.error("Error fetching article details:", error);
+    });
+} else {
+  console.error("Article ID is missing in the URL");
+  alert("유효하지 않은 게시글입니다.");
+}
+
+const commentButton = document.querySelector(".new-comment button");
+const commentTextArea = document.querySelector(".new-comment textarea");
+
+commentButton.addEventListener("click", function () {
+  const commentContent = commentTextArea.value.trim();
+
+  if (!commentContent) {
+    alert("댓글을 입력하세요!");
+    return;
+  }
+
+  const authToken = localStorage.getItem("authToken");
+
+  const headers = {
+    "Content-Type": "application/json",
+  };
+
+  if (authToken) {
+    headers["Authorization"] = `Bearer ${authToken}`;
+  }
+
+  const commentData = {
+    articleId: articleId,
+    comment: commentContent,
+    parentId: null,
+  };
+
+  fetch("https://food-social.kro.kr/api/v1/comment", {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify(commentData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        refreshComments(headers);
+
+        commentTextArea.value = "";
+      } else {
+        alert("댓글 작성 실패: " + data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error adding comment:", error);
+      alert("댓글을 추가하는 중 오류가 발생했습니다.");
+    });
+});
+
+function refreshComments(headers) {
+  const commentsSection = document.querySelector(".comments-section");
+  commentsSection.innerHTML = "";
+
+  fetch(`https://food-social.kro.kr/api/v1/comment?articleId=${articleId}`, {
+    method: "GET",
+    headers: headers,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success && data.data.length > 0) {
+        data.data.forEach((comment) => {
+          const commentElement = document.createElement("div");
+          commentElement.classList.add("comment");
+
+          commentElement.innerHTML = `
+              <div class="comment-content">
+                <strong>${comment.nickname}</strong>
+                <p>${comment.comment}</p>
+                <div class="comment-meta">작성일: ${comment.updatedAt}</div>
+              </div>
+            `;
+
+          commentsSection.appendChild(commentElement);
+        });
+      } else {
+        commentsSection.innerHTML = "<p>댓글이 없습니다.</p>";
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching comments:", error);
+      commentsSection.innerHTML =
+        "<p>댓글을 불러오는 중 오류가 발생했습니다.</p>";
+    });
 }
