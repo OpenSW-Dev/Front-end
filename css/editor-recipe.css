@@ -8,6 +8,13 @@
   text-align: center;
 }
 
+#category {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 10px;
+}
+
 .editor-btn {
   background-color: #d8c6a3;
   margin-top: 10px;

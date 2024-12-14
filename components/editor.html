@@ -40,10 +40,12 @@
     <header id="navbar-header"></header>
     <script src="../js/navbar.js"></script>
     <div class="editor-container">
-      <h2 style="margin-top: 10px; margin-bottom: 10px">Recipe</h2>
-      <input id="recipe-title" placeholder="Title" type="text" />
-      <h2 style="margin-bottom: 10px">Ingredients</h2>
-      <div id="ingredients-list">
+      <h2 style="margin-top: 10px; margin-bottom: 10px">제목</h2>
+      <input id="recipe-title" placeholder="제목" type="text" />
+      <h2 style="margin-top: 10px; margin-bottom: 10px">카테고리</h2>
+      <input id="category" placeholder="카테고리" type="text" />
+      <h2 style="margin-bottom: 10px">레시피</h2>
+      <!-- <div id="ingredients-list">
         <div class="ingredient-container">
           <input class="ingredient" placeholder="Ingredient" type="text" />
           <button class="btn remove-btn" onclick="removeIngredient(this)">
@@ -58,16 +60,16 @@
           </button>
           <input class="ingredient-amount" placeholder="Amount" type="text" />
         </div>
-      </div>
-      <button
+      </div> -->
+      <!-- <button
         class="btn editor-btn"
         id="ingredient-btn"
         style="margin: 0 0 10px 0"
       >
         +
-      </button>
+      </button> -->
       <div id="editor"></div>
-      <button class="btn editor-btn">Submit</button>
+      <button class="btn editor-btn" id="editor-btn">Submit</button>
     </div>
   </body>
 </html>
