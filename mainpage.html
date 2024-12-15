@@ -30,57 +30,32 @@
             </div>
             메인 페이지
         </div>
-        <!--로그인 버튼-->
-        <!--실제 페이지 넘어가는 코드, 아래 코드는 지우고 사용-->
-        <!--<button class="login-button" onclick="goToPage('login')">로그인</button>-->
-        <button id="headerLoginBtn" class="login-button" onclick="toggleLogin()">로그인</button>
+        <button class="login-button" onclick="goToPage('login')">로그인</button>
     </div>
 
     <!--담벼락-->
     <div class="main-container">
+        <!-- 왼쪽 컬럼 -->
         <div class="left-column">
             <div class="section wall-section">
                 <div class="section-header">
                     <span>HOT RECEIPE</span>
                     <button class="more-button" onclick="goToPage('wall')">더보기</button>
                 </div>
-                <div class="grid-container">
-                    <div class="grid-item" onclick="goToPage('image1')">
-                        <img src="sampleimage/bibimbab.jpeg" alt="비빔밥">
-                        <div class="grid-item-overlay">
-                            <span>비빔밥 맛잇게 만드는 재료</span>
-                        </div>
-                    </div>
-                    <div class="grid-item" onclick="goToPage('image2')">
-                        <img src="sampleimage/jjajangmeon.jpg" alt="짜장면">
-                        <div class="grid-item-overlay">
-                            <span>정통 짜장면 레시피</span>
-                        </div>
-                    </div>
-                    <div class="grid-item" onclick="goToPage('image3')">
-                        <img src="sampleimage/pizza.jpg" alt="피자">
-                        <div class="grid-item-overlay">
-                            <span>시카고 피자</span>
-                        </div>
-                    </div>
-                    <div class="grid-item" onclick="goToPage('image4')">
-                        <img src="sampleimage/ssalguksu.jpeg" alt="쌀국수">
-                        <div class="grid-item-overlay">
-                            <span>베트남 쌀국수</span>
-                        </div>
-                    </div>
+                <div class="grid-container" id="recipeGrid">
+                    <!-- 여기에 JavaScript로 동적으로 내용이 추가됩니다 -->
                 </div>
             </div>
         </div>
 
-        <!--에디터-->
+        <!-- 오른쪽 컬럼 -->
         <div class="right-column">
             <div id="editorLoginSection" class="section editor-section">
                 <div class="section-header">
                     <span>에디터</span>
                 </div>
                 <div class="editor-login-content">
-                    <button class="login-button-large" onclick="toggleLogin()">
+                    <button class="login-button-large" onclick="goToPage('login')">
                         로그인하고 추천 레시피 보기
                     </button>
                 </div>
@@ -93,37 +68,24 @@
                 <div class="editor-content">
                     <div class="circle-image"></div>
                     <div class="content-text">
-                        <div class="content-title">내 닉네임</div>
-                        <div class="content-description">팔로우 20 | 팔로잉 2</div>
+                        <div class="content-title" id="accountNickname"></div>
+                        <div class="content-description">팔로잉 <span id="followingCount">0</span></div>
                     </div>
                     <button class="more-button" onclick="goToPage('editor')">글쓰기</button>
                 </div>
             </div>
 
-            <!--팔로우-->
             <div id="followSection" class="section follow-section hidden">
                 <div class="section-header">
-                    <span>팔로우 목록</span>
-                    <button class="more-button" onclick="goToPage('follow')">더보기</button>
+                    <span>팔로우</span>
                 </div>
-                <div class="follow-content">
-                    <div class="circle-image"></div>
-                    <div class="content-text">
-                        <div class="content-title">팔로잉 1 닉네임</div>
-                        <div class="content-description">새 글 2</div>
-                    </div>
-                </div>
-                <div class="follow-content">
-                    <div class="circle-image"></div>
-                    <div class="content-text">
-                        <div class="content-title">팔로잉 2 닉네임</div>
-                        <div class="content-description">새 글 3</div>
-                    </div>
+                <div id="followContainer" class="follow-container">
+                    <!-- 여기에 JavaScript로 동적으로 내용이 추가됩니다 -->
                 </div>
             </div>
         </div>
     </div>
+
     <script src="mainpage.js"></script>
 </body>
-
 </html>
