@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Followers:", followers);
 
       const followListBtn = document.querySelector(".follow-list-btn");
+      followListBtn.onclick = function () {
+        window.location.href = "followpage.html";
+      };
+
       const logoutButton = document.querySelector(".logout-btn");
 
       if (username && followers) {

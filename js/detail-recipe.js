@@ -64,7 +64,32 @@ if (articleId) {
       document.querySelector(".post-title").textContent = article.title;
 
       const postMeta = document.querySelector(".post-meta");
-      postMeta.textContent = `작성자: ${article.nickname} | 작성일: ${article.date}`;
+      postMeta.innerHTML = `작성자: ${article.nickname} | 작성일: ${article.date} | 팔로우: <span class="follow-star">⭐</span>`;
+
+      const followStar = document.querySelector(".follow-star");
+
+      followStar.addEventListener("click", function () {
+        fetch("https://food-social.kro.kr/api/v1/follow", {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({ followingId: article.authorId }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              if (followStar.textContent === "☆") {
+                followStar.textContent = "⭐"; // Change to empty star
+              } else {
+                followStar.textContent = "☆"; // Change to filled star
+              }
+            } else {
+              console.error("Error following the post:", data.message);
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching follow status:", error);
+          });
+      });
 
       const postContent = document.querySelector(".post-content");
       postContent.innerHTML = article.content;
@@ -74,10 +99,6 @@ if (articleId) {
         <div class="heart-count">
           <span class="heart-icon">❤️</span>
           <span>${article.likeCnt}</span>
-        </div>
-        <div class="bookmark-count">
-          <span class="bookmark-icon">⭐</span>
-          <span>${article.bookmarks || 0}</span>
         </div>
         <span>💬 ${article.cmtCnt}</span>
       `;
