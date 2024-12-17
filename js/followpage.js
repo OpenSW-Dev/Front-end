@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function createUserHTML(user) {
     return `
             <div class="user">
-                <img src="https://via.placeholder.com/60" alt="User Image">
+                <img src="https://img.freepik.com/free-vector/realistic-fork-spoon-silver-kitchen-stainless-utensil-set_33099-145.jpg" alt="User Image">
                 <div class="user-info">
                     <div class="user-name">${user.nickname}</div>
                     <div class="user-description">사용자</div>

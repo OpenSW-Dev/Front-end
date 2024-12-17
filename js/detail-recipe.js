@@ -1,31 +1,3 @@
-// 하트, 별 카운트 증가/감소 기능
-document
-  .querySelectorAll(".heart-count .heart-icon, .bookmark-count .bookmark-icon")
-  .forEach((icon) => {
-    icon.addEventListener("click", function () {
-      const countSpan = this.nextElementSibling;
-      let count = parseInt(countSpan.textContent);
-      if (this.classList.contains("active")) {
-        count -= 1; // 이미 눌린 상태 -> 감소
-        this.classList.remove("active");
-      } else {
-        count += 1; // 눌리지 않은 상태 -> 증가
-        this.classList.add("active");
-      }
-      countSpan.textContent = count;
-    });
-  });
-
-// 댓글 좋아요(하트) 기능
-document
-  .querySelector(".comments-section")
-  .addEventListener("click", function (e) {
-    if (e.target && e.target.classList.contains("heart-icon")) {
-      const heartIcon = e.target;
-      heartIcon.classList.toggle("active"); // 눌린 상태 토글
-    }
-  });
-
 // 댓글 수 업데이트 함수
 function updateCommentCount() {
   const commentCount = document.querySelectorAll(
@@ -68,6 +40,23 @@ if (articleId) {
 
       const followStar = document.querySelector(".follow-star");
 
+      fetch("https://food-social.kro.kr/api/v1/follow", {
+        method: "GET",
+        headers: headers,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const ids = data.data.map((item) => item.id);
+
+          if (ids.includes(article.authorId)) {
+            console.log("The article is in the list.");
+            followStar.textContent = "⭐";
+          } else {
+            console.log("The article is not in the list.");
+            followStar.textContent = "☆";
+          }
+        });
+
       followStar.addEventListener("click", function () {
         fetch("https://food-social.kro.kr/api/v1/follow", {
           method: "POST",
@@ -78,9 +67,9 @@ if (articleId) {
           .then((data) => {
             if (data.success) {
               if (followStar.textContent === "☆") {
-                followStar.textContent = "⭐"; // Change to empty star
+                followStar.textContent = "⭐";
               } else {
-                followStar.textContent = "☆"; // Change to filled star
+                followStar.textContent = "☆";
               }
             } else {
               console.error("Error following the post:", data.message);
@@ -97,11 +86,35 @@ if (articleId) {
       const stats = document.querySelector(".stats");
       stats.innerHTML = `
         <div class="heart-count">
-          <span class="heart-icon">❤️</span>
-          <span>${article.likeCnt}</span>
+          <span class="heart-icon" id="heart-icon">❤️</span>
+          <span id="heart-count">${article.likeCnt}</span>
         </div>
         <span>💬 ${article.cmtCnt}</span>
       `;
+
+      const heartIcon = document.getElementById("heart-icon");
+      const heartCount = document.getElementById("heart-count");
+
+      const apiEndpoint = `https://food-social.kro.kr/api/v1/article/like/${articleId}`;
+
+      heartIcon.addEventListener("click", () => {
+        fetch(apiEndpoint, {
+          method: "POST",
+          headers: headers,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              let currentCount = parseInt(heartCount.textContent, 10);
+              heartCount.textContent = currentCount + 1;
+            } else {
+              console.error("Failed to update heart count.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error during fetch:", error);
+          });
+      });
 
       const commentsSection = document.querySelector(".comments-section");
 
@@ -154,6 +167,7 @@ commentButton.addEventListener("click", function () {
         refreshComments(headers);
 
         commentTextArea.value = "";
+        updateCommentCount();
       } else {
         alert("댓글 작성 실패: " + data.message);
       }

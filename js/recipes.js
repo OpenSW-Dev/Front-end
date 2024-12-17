@@ -33,13 +33,9 @@ fetch("https://food-social.kro.kr/api/v1/article/total")
       const articleWriter = document.createElement("p");
       articleWriter.textContent = `요리사: ${article.nickname}`;
 
-      const articleLikes = document.createElement("p");
-      articleLikes.textContent = `좋아요: ${article.likes}`;
-
       const articleMeta = document.createElement("div");
       articleMeta.classList.add("article-meta");
       articleMeta.appendChild(articleWriter);
-      articleMeta.appendChild(articleLikes);
 
       articleInfo.appendChild(articleTitle);
       articleInfo.appendChild(articleMeta);

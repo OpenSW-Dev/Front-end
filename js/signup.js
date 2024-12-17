@@ -8,7 +8,6 @@ document
     const passwordConfirm = event.target.passwordCheck.value;
     const nickname = event.target.nickname.value;
     const errorMessage = document.getElementById("error-message");
-    const role = "USER"
 
     errorMessage.textContent = "";
 
@@ -30,7 +29,6 @@ document
             email,
             password,
             nickname,
-            role,
           }),
         }
       );
@@ -41,7 +39,7 @@ document
           errorResponse.message || "회원가입 중 오류가 발생했습니다.";
         return;
       }
-      
+
       const successResponse = await response.json();
       alert("회원가입 성공!");
       window.location.href = "login.html";

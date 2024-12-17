@@ -11,6 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
     theme: "snow", // or 'bubble'
   });
 
+  const authToken = localStorage.getItem("authToken");
+
+  if (!authToken) {
+    alert("글을 작성하려면 로그인해주세요.");
+    window.location.href = "login.html";
+  }
+
   const submitButton = document.getElementById("editor-btn");
   submitButton.addEventListener("click", () => {
     const title = document.getElementById("recipe-title").value;
@@ -37,8 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append("images[]", image);
       }
     });
-
-    const authToken = localStorage.getItem("authToken");
 
     fetch("https://food-social.kro.kr/api/v1/article/new", {
       headers: {
@@ -82,6 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
         images.push(imgSrc);
       }
     });
+
+    console.log(images);
 
     return images;
   }
