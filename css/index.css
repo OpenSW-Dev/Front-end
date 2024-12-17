@@ -117,3 +117,7 @@ input[type="text"] {
   height: 400px;
   object-fit: cover;
 }
+
+.article-post {
+  cursor: pointer;
+}

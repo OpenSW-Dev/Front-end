@@ -74,6 +74,10 @@ async function fetchRecipeData() {
         articlePost.appendChild(articleDescription);
 
         articlesContainer.appendChild(articlePost);
+
+        articlePost.addEventListener("click", () => {
+          window.location.href = `detail-recipe.html?id=${article.id}`;
+        });
       });
     } else {
       console.error("Error: ", data.message);
