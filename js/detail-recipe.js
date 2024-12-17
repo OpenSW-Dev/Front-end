@@ -3,9 +3,12 @@ function updateCommentCount() {
   const commentCount = document.querySelectorAll(
     ".comments-section .comment"
   ).length;
-  document.querySelector(
-    ".action-bar .stats span:last-child"
-  ).textContent = `💬 ${commentCount}`;
+
+  const commentCountSpan = document.querySelector("#comment-count");
+
+  if (commentCountSpan) {
+    commentCountSpan.textContent = `💬 ${commentCount}`;
+  }
 }
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -89,8 +92,8 @@ if (articleId) {
           <span class="heart-icon" id="heart-icon">❤️</span>
           <span id="heart-count">${article.likeCnt}</span>
         </div>
-        <span>💬 ${article.cmtCnt}</span>
-      `;
+        <span id="comment-count">💬 ${article.cmtCnt}</span>
+        `;
 
       const heartIcon = document.getElementById("heart-icon");
       const heartCount = document.getElementById("heart-count");
@@ -167,7 +170,7 @@ commentButton.addEventListener("click", function () {
         refreshComments(headers);
 
         commentTextArea.value = "";
-        updateCommentCount();
+        window.location.reload();
       } else {
         alert("댓글 작성 실패: " + data.message);
       }
