@@ -1,5 +1,3 @@
-/* detail-recipe.css */
-
 .container {
   width: 55%;
   margin: 20px auto;
@@ -85,6 +83,13 @@
   border-bottom: none;
 }
 
+/* 수정 모드일 때 컬럼 형태로 전환 */
+.comment.editing {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
 .comment-content {
   flex: 1;
 }
@@ -133,6 +138,7 @@
   flex-direction: column;
   gap: 5px;
   margin-top: 5px;
+  width: 100%;
 }
 
 /* 댓글 수정 폼의 textarea를 댓글 등록 폼과 동일한 크기 및 스타일로 적용 */

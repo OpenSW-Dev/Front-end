@@ -1,5 +1,3 @@
-// detail-recipe.js
-
 const authToken = localStorage.getItem("authToken");
 let loggedInUserNickname = null;
 
@@ -84,7 +82,8 @@ function fetchArticleDetails() {
           .then((response) => response.json())
           .then((data) => {
             if (data.success) {
-              followStar.textContent = followStar.textContent === "☆" ? "⭐" : "☆";
+              followStar.textContent =
+                followStar.textContent === "☆" ? "⭐" : "☆";
             } else {
               console.error("Error following the post:", data.message);
             }
@@ -143,10 +142,8 @@ function fetchArticleDetails() {
         const postButtons = document.querySelector(".post-buttons");
         postButtons.style.display = "flex";
 
-        // 수정 버튼 이벤트 핸들러 추가
         const editButton = document.querySelector(".edit-button");
         editButton.addEventListener("click", function () {
-          // 수정 페이지(editor.html)로 이동하면서 articleId 전달
           window.location.href = `editor.html?articleId=${articleId}`;
         });
 
@@ -275,6 +272,7 @@ function refreshComments(headers) {
 }
 
 function enterEditMode(commentElement, commentId, originalComment, headers) {
+  commentElement.classList.add("editing"); // 수정 모드 스타일 적용
   const contentDiv = commentElement.querySelector(".comment-content");
   contentDiv.style.display = "none";
 
@@ -329,6 +327,7 @@ function enterEditMode(commentElement, commentId, originalComment, headers) {
   cancelButton.textContent = "취소";
   cancelButton.addEventListener("click", () => {
     editForm.remove();
+    commentElement.classList.remove("editing");
     contentDiv.style.display = "block";
     if (buttonsDiv) buttonsDiv.style.display = "flex";
   });
