@@ -229,3 +229,4 @@ function refreshComments(headers) {
         "<h2>댓글</h2><p>댓글을 불러오는 중 오류가 발생했습니다.</p>";
     });
 }
+
