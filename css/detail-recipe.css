@@ -7,6 +7,17 @@
   border-radius: 5px;
 }
 
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.post-info {
+  flex: 1;
+}
+
 .post-title {
   font-size: 22px;
   font-weight: bold;
@@ -17,7 +28,30 @@
 .post-meta {
   font-size: 14px;
   color: #8e8e8e;
-  margin-bottom: 20px;
+}
+
+.post-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-button {
+  background-color: #f39c12;
+  color: white;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
 }
 
 .post-content {
@@ -42,10 +76,18 @@
   justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #dbdbdb;
+  position: relative;
 }
 
 .comment:last-child {
   border-bottom: none;
+}
+
+/* 수정 모드일 때 컬럼 형태로 전환 */
+.comment.editing {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
 }
 
 .comment-content {
@@ -69,6 +111,72 @@
   font-size: 12px;
   color: #8e8e8e;
   margin-top: 5px;
+}
+
+.comment-buttons {
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.comment-buttons button {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.comment-buttons button:hover {
+  color: #333;
+}
+
+.comment-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+/* 댓글 수정 폼의 textarea를 댓글 등록 폼과 동일한 크기 및 스타일로 적용 */
+.comment-edit-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  height: 100px; 
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  resize: none;
+}
+
+.comment-edit-form .edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.comment-edit-form .save-button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.comment-edit-form .cancel-button {
+  background-color: #bdc3c7;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .action-bar {
@@ -103,13 +211,9 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* 자식 요소를 우측 정렬 */
+  align-items: flex-end;
   gap: 10px;
-  width: 100%; /* 부모 컨테이너 너비를 꽉 채움 */
-}
-
-.new-comment .textarea-wrapper {
-  width: 100%; /* textarea가 너비 100%를 가질 수 있는 래퍼 */
+  width: 100%;
 }
 
 .new-comment textarea {

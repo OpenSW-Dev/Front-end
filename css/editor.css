@@ -1,6 +1,55 @@
+/* editor.css */
+
 .ql-editor {
   background-color: #ffffff;
 }
 .ql-toolbar {
   background-color: #ffffff;
+}
+
+/* editor-recipe.css */
+
+.btn {
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  font-size: 15px;
+  font-weight: bolder;
+  justify-content: center;
+  text-align: center;
+}
+
+#category {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.editor-btn {
+  background-color: #d8c6a3;
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+.editor-container {
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 20px;
+  width: 55%;
+}
+
+#recipe-title {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 10px;
 }
