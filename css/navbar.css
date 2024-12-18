@@ -1,88 +1,123 @@
+/* CSS */
+/* 공통 스타일 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* 상단 사용자 정보 */
 .custom-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* 좌우 끝에 배치 */
   align-items: center;
-  padding: 15px 20px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
-  height: 1vh;
+  padding: 10px 20px;
+  background-color: #1e272e;
+  color: #f1f2f6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 사용자 정보 스타일 */
+.header-left .logo img {
+  height: 40px;
+  width: auto;
+}
+
 .account-info {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 10px;
   font-size: 14px;
-  color: black;
-  font-weight: bold; /* 텍스트를 진하게 설정 */
+  font-weight: 500;
 }
 
+/* 로그인 상태일 경우 로고 제거 */
+.custom-header.logged-in .header-left {
+  display: none;
+}
+
+/* 버튼 스타일 */
 .header-buttons button {
   padding: 8px 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
-  font-size: 12px;
-  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .follow-list-btn {
-  background-color: #007bff;
-  margin-right: 10px;
+  background-color: #0984e3;
+  color: white;
 }
 
 .follow-list-btn:hover {
-  background-color: #0056b3;
+  background-color: #0652dd;
 }
 
 .logout-btn {
-  background-color: #dc3545;
+  background-color: #d63031;
+  color: white;
 }
 
 .logout-btn:hover {
-  background-color: #a71d2a;
+  background-color: #c0392b;
 }
 
-body {
-  background-color: white;
-  margin: 0;
-  padding: 0;
-}
-
-/* Navbar styles */
+/* Navbar 스타일 */
 .navbar {
-  align-items: center;
-  background-color: #f5eecc;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  text-align: center;
-  width: 100%;
+  background-color: #ffffff;
+  padding: 20px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-top: 2px solid #ecf0f1;
 }
 
-/* Navigation links list */
 .nav-links {
+  list-style: none;
   display: flex;
   justify-content: center;
-  list-style: none;
-  padding-left: 0;
-  width: 100%;
+  margin: 0;
+  padding: 0;
+  gap: 40px;
 }
-.navbar .nav-links li {
-  line-height: 50px;
-  padding: 0 30px 0 30px;
+
+.nav-links li a {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2d3436;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
-.navbar .nav-links li a {
-  color: #333333;
-  display: block;
-  font-size: larger;
-  font-weight: bold;
-  text-decoration: none;
+
+.nav-links li a:hover {
+  color: #6c5ce7;
+  background-color: rgba(108, 92, 231, 0.1);
 }
-.navbar .nav-links li a:hover {
-  color: #556b2f;
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .custom-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links li a {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
 }
