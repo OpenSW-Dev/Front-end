@@ -86,7 +86,7 @@ if (articleId) {
 
         const postContent = document.querySelector(".post-content");
         postContent.innerHTML = article.content;
-
+      
         const stats = document.querySelector(".stats");
         stats.innerHTML = `
           <div class="heart-count">
@@ -95,6 +95,16 @@ if (articleId) {
           </div>
           <span id="comment-count">💬 ${article.cmtCnt}</span>
           `;
+
+      const images = postContent.querySelectorAll("img");
+      images.forEach((img) => {
+        img.style.maxWidth = "800px";
+        img.style.maxHeight = "800px";
+        img.style.width = "auto";
+        img.style.height = "auto";
+        img.style.display = "block";
+        img.style.margin = "0 auto";
+      });
 
         const heartIcon = document.getElementById("heart-icon");
         const heartCount = document.getElementById("heart-count");
