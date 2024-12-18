@@ -25,108 +25,111 @@ if (articleId) {
     headers["Authorization"] = `Bearer ${authToken}`;
   }
 
-  fetch(
-    `https://food-social.kro.kr/api/v1/article/detail?articleId=${articleId}`,
-    {
-      method: "GET",
-      headers: headers,
-    }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      const article = data.data;
-
-      document.querySelector(".post-title").textContent = article.title;
-
-      const postMeta = document.querySelector(".post-meta");
-      postMeta.innerHTML = `작성자: ${article.nickname} | 작성일: ${article.date} | 팔로우: <span class="follow-star">⭐</span>`;
-
-      const followStar = document.querySelector(".follow-star");
-
-      fetch("https://food-social.kro.kr/api/v1/follow", {
+  function fetchArticleDetails() {
+    fetch(
+      `https://food-social.kro.kr/api/v1/article/detail?articleId=${articleId}`,
+      {
         method: "GET",
         headers: headers,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          const ids = data.data.map((item) => item.id);
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const article = data.data;
 
-          if (ids.includes(article.authorId)) {
-            console.log("The article is in the list.");
-            followStar.textContent = "⭐";
-          } else {
-            console.log("The article is not in the list.");
-            followStar.textContent = "☆";
-          }
+        document.querySelector(".post-title").textContent = article.title;
+
+        const postMeta = document.querySelector(".post-meta");
+        postMeta.innerHTML = `작성자: ${article.nickname} | 작성일: ${article.date} | 팔로우: <span class="follow-star">⭐</span>`;
+
+        const followStar = document.querySelector(".follow-star");
+
+        fetch("https://food-social.kro.kr/api/v1/follow", {
+          method: "GET",
+          headers: headers,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const ids = data.data.map((item) => item.id);
+
+            if (ids.includes(article.authorId)) {
+              console.log("The article is in the list.");
+              followStar.textContent = "⭐";
+            } else {
+              console.log("The article is not in the list.");
+              followStar.textContent = "☆";
+            }
+          });
+
+        followStar.addEventListener("click", function () {
+          fetch("https://food-social.kro.kr/api/v1/follow", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify({ followingId: article.authorId }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                if (followStar.textContent === "☆") {
+                  followStar.textContent = "⭐";
+                } else {
+                  followStar.textContent = "☆";
+                }
+              } else {
+                console.error("Error following the post:", data.message);
+              }
+            })
+            .catch((error) => {
+              console.error("Error fetching follow status:", error);
+            });
         });
 
-      followStar.addEventListener("click", function () {
-        fetch("https://food-social.kro.kr/api/v1/follow", {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify({ followingId: article.authorId }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              if (followStar.textContent === "☆") {
-                followStar.textContent = "⭐";
+        const postContent = document.querySelector(".post-content");
+        postContent.innerHTML = article.content;
+
+        const stats = document.querySelector(".stats");
+        stats.innerHTML = `
+          <div class="heart-count">
+            <span class="heart-icon" id="heart-icon">${article.myLike ? "❤️" : "🤍"}</span>
+            <span id="heart-count">${article.likeCnt}</span>
+          </div>
+          <span id="comment-count">💬 ${article.cmtCnt}</span>
+          `;
+
+        const heartIcon = document.getElementById("heart-icon");
+        const heartCount = document.getElementById("heart-count");
+
+        const apiEndpoint = `https://food-social.kro.kr/api/v1/article/like/${articleId}`;
+
+        heartIcon.addEventListener("click", () => {
+          fetch(apiEndpoint, {
+            method: "POST",
+            headers: headers,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // 좋아요 상태를 업데이트하기 위해 게시글 재조회
+                fetchArticleDetails();
               } else {
-                followStar.textContent = "☆";
+                console.error("Failed to update heart count.");
               }
-            } else {
-              console.error("Error following the post:", data.message);
-            }
-          })
-          .catch((error) => {
-            console.error("Error fetching follow status:", error);
-          });
+            })
+            .catch((error) => {
+              console.error("Error during fetch:", error);
+            });
+        });
+
+        const commentsSection = document.querySelector(".comments-section");
+        commentsSection.innerHTML = "<h2>댓글</h2>";
+        refreshComments(headers);
+      })
+      .catch((error) => {
+        console.error("Error fetching article details:", error);
       });
+  }
 
-      const postContent = document.querySelector(".post-content");
-      postContent.innerHTML = article.content;
-
-      const stats = document.querySelector(".stats");
-      stats.innerHTML = `
-        <div class="heart-count">
-          <span class="heart-icon" id="heart-icon">❤️</span>
-          <span id="heart-count">${article.likeCnt}</span>
-        </div>
-        <span id="comment-count">💬 ${article.cmtCnt}</span>
-        `;
-
-      const heartIcon = document.getElementById("heart-icon");
-      const heartCount = document.getElementById("heart-count");
-
-      const apiEndpoint = `https://food-social.kro.kr/api/v1/article/like/${articleId}`;
-
-      heartIcon.addEventListener("click", () => {
-        fetch(apiEndpoint, {
-          method: "POST",
-          headers: headers,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              let currentCount = parseInt(heartCount.textContent, 10);
-              heartCount.textContent = currentCount + 1;
-            } else {
-              console.error("Failed to update heart count.");
-            }
-          })
-          .catch((error) => {
-            console.error("Error during fetch:", error);
-          });
-      });
-
-      const commentsSection = document.querySelector(".comments-section");
-
-      commentsSection.innerHTML = "<h2>댓글</h2>";
-      refreshComments(headers);
-    })
-    .catch((error) => {
-      console.error("Error fetching article details:", error);
-    });
+  fetchArticleDetails(); // 초기 게시글 조회
 } else {
   console.error("Article ID is missing in the URL");
   alert("유효하지 않은 게시글입니다.");
