@@ -10,34 +10,38 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Followers:", followers);
 
       const followListBtn = document.querySelector(".follow-list-btn");
-      followListBtn.onclick = function () {
-        window.location.href = "followpage.html";
-      };
-
       const logoutButton = document.querySelector(".logout-btn");
+      const customHeader = document.querySelector(".custom-header");
+      const usernameElem = document.querySelector(".username");
+      const detailsElem = document.querySelector(".details");
 
       if (username && followers) {
-        document.querySelector(".username").textContent = username;
-        document.querySelector(
-          ".details"
-        ).textContent = `팔로워 ${followers}명`;
+        // 로그인 상태
+        usernameElem.textContent = username;
+        detailsElem.textContent = `팔로워 ${followers}명`;
+
+        // 로고 제거
+        customHeader.classList.add("logged-in");
 
         followListBtn.style.display = "inline-block";
+        followListBtn.onclick = function () {
+          window.location.href = "followpage.html";
+        };
 
         logoutButton.textContent = "로그아웃";
-
         logoutButton.onclick = function () {
           localStorage.clear();
           window.location.href = "login.html";
         };
       } else {
-        document.querySelector(".username").textContent = "";
-        document.querySelector(".details").textContent = "";
+        // 비로그인 상태
+        usernameElem.textContent = "";
+        detailsElem.textContent = "";
+
+        customHeader.classList.remove("logged-in");
 
         followListBtn.style.display = "none";
-
         logoutButton.textContent = "로그인";
-
         logoutButton.onclick = function () {
           window.location.href = "login.html";
         };

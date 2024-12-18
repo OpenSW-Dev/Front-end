@@ -21,11 +21,13 @@
       href="../logoimage/favicon-16x16.png"
     />
     <title>음식 레시피 공유 사이트</title>
+    <!-- 스타일시트 분리 -->
     <link rel="stylesheet" href="../css/detail-recipe.css" />
     <link href="../css/navbar.css" rel="stylesheet" />
   </head>
   <body>
     <header id="navbar-header"></header>
+    <!-- navbar.js 로드 -->
     <script src="../js/navbar.js"></script>
 
     <div class="container">
@@ -46,7 +48,7 @@
             <span class="heart-icon" id="heart-icon">❤️</span>
             <span id="heart-count">94</span>
           </div>
-          <span>💬 4</span>
+          <span id="comment-count">💬 4</span>
           <!-- 댓글 개수 표시 -->
         </div>
       </div>
@@ -56,14 +58,14 @@
         <h2>댓글</h2>
       </div>
 
-      <!-- 새로운 댓글 작성 -->
+      <!-- 새로운 댓글 작성 (로그인 상태에서만 보임, detail-recipe.js에서 처리) -->
       <div class="new-comment">
         <textarea placeholder="댓글을 입력하세요..."></textarea>
         <button>댓글 작성</button>
       </div>
     </div>
 
-    <!-- JavaScript 코드 추가 -->
+    <!-- detail-recipe.js 로드 -->
     <script src="../js/detail-recipe.js"></script>
   </body>
 </html>
