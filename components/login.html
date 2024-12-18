@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- 다양한 기기에서의 지원을 위한 여러 크기의 favicon -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>음식 레시피 로그인</title>
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -19,30 +21,28 @@
       sizes="16x16"
       href="../logoimage/favicon-16x16.png"
     />
-    <title>음식 레시피 공유 사이트</title>
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/login.css" />
   </head>
   <body>
     <header id="navbar-header"></header>
     <script src="../js/navbar.js"></script>
+
     <div class="login-container">
       <form id="login-form">
-        <h1 style="font-weight: bold;">오늘도 즐거운 한 끼!</h2>
-          <div class="error" id="error-message"></div>
+        <h1 class="login-title">오늘도 즐거운 한 끼!</h1>
+        <div class="error-message" id="error-message"></div>
+
         <input type="email" name="email" placeholder="이메일" required />
-        <input
-          type="password"
-          name="password"
-          placeholder="비밀번호"
-          required
-        />
-        <div style="display: flex; gap: 10px; width: 260%">
-          <button type="submit">로그인</button>
-          <a class="signup" href="signup.html">회원가입</a>
+        <input type="password" name="password" placeholder="비밀번호" required />
+
+        <div class="button-container">
+          <button type="submit" class="login-button">로그인</button>
+          <a class="signup-button" href="signup.html">회원가입</a>
         </div>
       </form>
     </div>
+
     <script src="../js/login.js"></script>
   </body>
 </html>

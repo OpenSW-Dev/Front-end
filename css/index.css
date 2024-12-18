@@ -1,102 +1,41 @@
+/* 기본 설정 */
 body {
   margin: 0;
   padding: 0;
-  background-color: white;
-}
-.container {
-  max-width: 600px;
-  margin: 20px auto;
-  background-color: #fff;
-  border: 1px solid #dbdbdb;
-  border-radius: 5px;
-}
-.header {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
-.header img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-.header .username {
-  font-weight: bold;
-}
-.image-container img {
-  width: 100%;
-  height: auto;
-}
-.content {
-  padding: 10px;
-}
-.likes {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.comments {
-  color: #8e8e8e;
-}
-.comments span {
-  font-weight: bold;
-  color: #262626;
-}
-.comment-box {
-  border-top: 1px solid #dbdbdb;
-  padding: 10px;
-}
-input[type="text"] {
-  width: calc(100% - 20px);
-  padding: 5px 10px;
-  border-radius: 20px;
-  border: 1px solid #dbdbdb;
-}
-.like-container {
-  display: flex;
-  align-items: center;
-}
-
-.like-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-right: 8px;
-}
-
-.heart-icon {
-  width: 24px;
-  height: 24px;
-  fill: #e0e0e0;
-  transition: fill 0.3s ease;
-}
-
-.like-button.active .heart-icon {
-  fill: #ff0000;
-}
-
-.like-count {
-  font-size: 16px;
+  font-family: "Arial", sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
 }
 
 .articles-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 15px;
 }
 
+/* 게시글 스타일 */
 .article-post {
-  margin-bottom: 30px;
-  border: 1px solid #e6e6e6;
   border-radius: 10px;
   background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.article-post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .article-header {
   display: flex;
   align-items: center;
   padding: 10px;
+  background-color: #fafafa;
 }
 
 .author-profile-image {
@@ -109,15 +48,88 @@ input[type="text"] {
 
 .author-name {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
+  color: #333;
 }
 
 .article-image {
   width: 100%;
-  height: 400px;
+  height: 200px;
   object-fit: cover;
 }
 
-.article-post {
-  cursor: pointer;
+.article-description {
+  padding: 10px;
+}
+
+.article-description h3 {
+  font-size: 18px;
+  margin: 0 0 5px;
+  color: #333;
+}
+
+.article-description p {
+  margin: 0;
+  font-size: 14px;
+  color: #777;
+}
+
+/* 메시지 출력 컨테이너 */
+.message-container {
+  text-align: center;
+  margin: 50px auto;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-icon {
+  font-size: 50px;
+  display: block;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.message-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+}
+
+.message-text {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.message-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.message-button:hover {
+  background-color: #0056b3;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .articles-container {
+    grid-template-columns: 1fr;
+  }
+
+  .message-container {
+    max-width: 90%;
+    padding: 15px;
+  }
 }
